@@ -1,6 +1,7 @@
 module detector_with_counter(clk, in, length, wr, rst, out);
 
-    input clk, in, length, wr, rst;
+    input clk, in, wr, rst;
+    input [31:0] length;
     output out;
 
     integer N = 5;
@@ -46,7 +47,7 @@ module detector_with_counter(clk, in, length, wr, rst, out);
     always @(posedge clk, posedge rst) 
         if (rst)
             out_reg <= 1'b0;
-        else if (counter == 1)
+        else if (counter <= 1)
             out_reg <= 1'b0;
         else if (posedge_in)
             out_reg <= 1'b1;
