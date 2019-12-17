@@ -16,8 +16,10 @@ module detector_with_counter_tb ();
 
     initial begin
         IN = 1'b0;
+        // should stop after N = 5
         #2 IN = 1'b1; $display("#%0t in", $time);
         #5 IN = 1'b0; $display("#%0t ~in", $time);
+        // should not start after when "in" is positive but not edge
         #10 IN = 1'b1; $display("#%0t in", $time);
         #70 IN = 1'b0; $display("#%0t ~in", $time);
         $finish;
